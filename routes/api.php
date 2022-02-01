@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CarAvailabilityController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('user', [HomeController::class, 'index']);
-
 Route::post('login', [HomeController::class, 'login']);
+
+Route::get('admin', [HomeController::class, 'index']);
+Route::get('user', [UserController::class, 'index']);
+Route::get('car', [CarController::class, 'index']);
+Route::get('car/availability', [CarAvailabilityController::class, 'index']);

@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $query = Admin::all();
 
-        return response()->json(['users' => $query], 200);
+        return response()->json(['admins' => $query], 200);
     }
 
     public function login(Request $request)

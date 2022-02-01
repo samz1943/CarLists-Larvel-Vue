@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -26,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $query = User::all();
+        $query = Admin::all();
 
         return response()->json(['users' => $query], 200);
     }
@@ -43,16 +44,28 @@ class HomeController extends Controller
                 $validator->errors()->all()
             ], 422);
         }
+
+        $user = Admin::where('email', $request->email)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+                return response()->json(['token' => $token], 200);
+            } else {
+                return response()->json(["message" => "Password mismatch"], 422);
+            }
+        } else {
+            return response()->json(["message" =>'User does not exist'], 422);
+        }
     
-        if (Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])) {
-            $user = Auth::user();
-            $token = $user->createToken('Access Token')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else { 
-            return response()->json(['error' => 'Invalid email or password'], 401);
-        } 
+        // if (Auth::attempt([
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ])) {
+        //     $user = Auth::user();
+        //     $token = $user->createToken('Laravel')->accessToken;
+        //     return response()->json(['token' => $token], 200);
+        // } else { 
+        //     return response()->json(['error' => 'Unauthorised'], 401);
+        // } 
     }
 }

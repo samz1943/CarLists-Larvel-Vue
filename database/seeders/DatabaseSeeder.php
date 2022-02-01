@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory(1)->create([
-            'email' => 'user@test.com',
+        Admin::factory(1)->create([
+            'email' => 'admin@test.com',
             'password' => Hash::make('12341234'),
         ]);
 

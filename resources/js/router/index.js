@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Layout from '../components/Layout'
+import Login from '../components/Login'
 import Example from '../components/ExampleComponent'
 
 const routes = [
@@ -13,8 +14,8 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'main',
-        component: Example,
+        name: 'login',
+        component: Login,
       },
     ]
   },

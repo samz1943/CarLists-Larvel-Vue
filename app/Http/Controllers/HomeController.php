@@ -48,12 +48,11 @@ class HomeController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            return response()->json(['token' => 'good'], 200);
-            // $user = Auth::user();
-            // $token = $user->createToken('API Token')->accessToken;
-            // return response()->json(['token' => $token], 200);
+            $user = Auth::user();
+            $token = $user->createToken('Access Token')->accessToken;
+            return response()->json(['token' => $token], 200);
         } else { 
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Invalid email or password'], 401);
         } 
     }
 }

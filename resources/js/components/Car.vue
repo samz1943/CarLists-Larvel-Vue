@@ -32,7 +32,9 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-6 col-xl-3 mb-5" v-for="(car, index) in cars" :key="index">
           <div class="card">
-            <img src="/images/car1.png" class="card-img-top">
+            <router-link :to="'/car/'+car.id+'/availability'">
+              <img src="/images/car1.png" class="card-img-top">
+            </router-link>
             <div class="card-body">
               <h5 class="card-title">{{ car.brand }} {{ car.build }} {{ car.year }}</h5>
               <span class="card-text">MYR {{ car.price }} per day</span><br>

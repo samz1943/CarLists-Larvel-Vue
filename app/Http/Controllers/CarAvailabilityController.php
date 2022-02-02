@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CarAvailabilityResource;
+use App\Models\Car;
 use App\Models\CarAvailability;
 use Illuminate\Http\Request;
 
@@ -12,11 +14,11 @@ class CarAvailabilityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Car $car)
     {
-        $query = CarAvailability::all();
+        $query = CarAvailability::find($car->id);
 
-        return response()->json(['car_availability' => $query], 200);
+        return new CarAvailabilityResource($query);
     }
 
     /**

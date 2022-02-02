@@ -34,13 +34,17 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12341234'),
         ]);
 
-        User::factory(30)->create();
-
-        Car::factory(30)->create()->each(
-            function($car) {
-              CarAvailability::factory()->create(['car_id' => $car->id]);
+        User::factory(30)->create()->each(
+            function($user) {
+                if ($user->verified && $user->product_manager) {
+                    Car::factory(rand(1,3))->create()->each(
+                        function($car) {
+                          CarAvailability::factory()->create(['car_id' => $car->id]);
+                        }
+                    );
+                }
             }
-          );
+        );
 
         Artisan::call('passport:install',['-vvv' => true]);
     }

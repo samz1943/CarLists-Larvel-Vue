@@ -28,5 +28,5 @@ Route::middleware('auth:api')->group(function() {
     Route::get('admin', [HomeController::class, 'index']);
     Route::get('user', [UserController::class, 'index']);
     Route::get('car', [CarController::class, 'index']);
-    Route::get('car/availability', [CarAvailabilityController::class, 'index']);
+    Route::get('car/{car}/availability', [CarAvailabilityController::class, 'index']);
 });

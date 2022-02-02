@@ -19,11 +19,8 @@ class UserController extends Controller
 
         $query = User::select('*');
 
-        if ($request->product_manager) {
+        if ($request->product_manager)
             $query->where('product_manager', $request->product_manager);
-        }
-
-        // return response()->json(['users' => $query], 200);
 
         return UserResource::collection($query->paginate($limit));
     }

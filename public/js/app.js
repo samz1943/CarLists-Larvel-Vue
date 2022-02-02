@@ -5273,6 +5273,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/route */ "./resources/js/api/route.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5288,9 +5297,125 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      data: {
+        mode: '',
+        geolocation: '',
+        page: 1,
+        limit: 12
+      },
+      cars: [],
+      paging: []
+    };
+  },
+  created: function created() {
+    this.getCars();
+  },
+  methods: {
+    goToPage: function goToPage(label) {
+      if (label == '&laquo; Previous') {
+        this.data.page -= 1;
+      } else if (label == 'Next &raquo;') {
+        this.data.page += 1;
+      } else {
+        this.data.page = label;
+      }
+
+      this.getCars();
+    },
+    filterMode: function filterMode(value) {
+      this.data.mode = value;
+      this.data.page = 1;
+      this.getCars();
+    },
+    filterGeolocation: function filterGeolocation(value) {
+      this.data.geolocation = value;
+      this.data.page = 1;
+      this.getCars();
+    },
+    getCars: function getCars() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _api_route__WEBPACK_IMPORTED_MODULE_1__.getCars(_this.data);
+
+              case 3:
+                response = _context.sent;
+                _this.cars = response.data.data;
+                _this.paging = response.data.meta.links;
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
+    }
   }
 });
 
@@ -29849,30 +29974,306 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
+  return _c("div", [
+    _c("div", { staticClass: "container my-3" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Car Component"),
-            ]),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "dropdown mb-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton1",
+                  "data-bs-toggle": "dropdown",
+                  "aria-expanded": "false",
+                },
+              },
+              [_vm._v("\n            Mode\n          ")]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n          I'm an example component.\n        "),
-            ]),
+            _c(
+              "ul",
+              {
+                staticClass: "dropdown-menu",
+                attrs: { "aria-labelledby": "dropdownMenuButton1" },
+              },
+              [
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterMode("")
+                      },
+                    },
+                  },
+                  [_c("div", { staticClass: "dropdown-item" }, [_vm._v("All")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterMode("auto")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Auto"),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterMode("manual")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Manual"),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "dropdown mb-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton1",
+                  "data-bs-toggle": "dropdown",
+                  "aria-expanded": "false",
+                },
+              },
+              [_vm._v("\n              Location\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              {
+                staticClass: "dropdown-menu",
+                attrs: { "aria-labelledby": "dropdownMenuButton1" },
+              },
+              [
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterGeolocation("")
+                      },
+                    },
+                  },
+                  [_c("div", { staticClass: "dropdown-item" }, [_vm._v("All")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterGeolocation("selangor")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Selangor"),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterGeolocation("penang")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Penang"),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterGeolocation("johor")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Johor"),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterGeolocation("kl")
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "dropdown-item" }, [
+                      _vm._v("Kuala Lumpur"),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
           ]),
         ]),
       ]),
-    ])
-  },
-]
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row justify-content-center" },
+        _vm._l(_vm.cars, function (car, index) {
+          return _c(
+            "div",
+            { key: index, staticClass: "col-sm-12 col-md-6 col-xl-3 mb-5" },
+            [
+              _c("div", { staticClass: "card" }, [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: { src: "/images/car1.png" },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v(
+                      _vm._s(car.brand) +
+                        " " +
+                        _vm._s(car.build) +
+                        " " +
+                        _vm._s(car.year)
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "card-text" }, [
+                    _vm._v("MYR " + _vm._s(car.price) + " per day"),
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "card-text" }, [
+                    _vm._v("Mode: " + _vm._s(car.mode)),
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "card-text" }, [
+                    _vm._v("Location: " + _vm._s(car.geolocation)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("p", { staticClass: "card-text text-end" }, [
+                    _vm._v(_vm._s(car.owner.name)),
+                  ]),
+                ]),
+              ]),
+            ]
+          )
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+      _c(
+        "ul",
+        { staticClass: "pagination justify-content-center" },
+        _vm._l(_vm.paging, function (page, index) {
+          return _c("div", { key: index }, [
+            page.url
+              ? _c("div", [
+                  page.label == "&laquo; Previous"
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          on: {
+                            click: function ($event) {
+                              return _vm.goToPage(page.label)
+                            },
+                          },
+                        },
+                        [
+                          _c("div", { staticClass: "page-link" }, [
+                            _vm._v("Previous"),
+                          ]),
+                        ]
+                      )
+                    : page.label == "Next &raquo;"
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          on: {
+                            click: function ($event) {
+                              return _vm.goToPage(page.label)
+                            },
+                          },
+                        },
+                        [
+                          _c("div", { staticClass: "page-link" }, [
+                            _vm._v("Next"),
+                          ]),
+                        ]
+                      )
+                    : _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          class: { active: page.active },
+                          on: {
+                            click: function ($event) {
+                              return _vm.goToPage(page.label)
+                            },
+                          },
+                        },
+                        [
+                          _c("div", { staticClass: "page-link" }, [
+                            _vm._v(_vm._s(page.label)),
+                          ]),
+                        ]
+                      ),
+                ])
+              : _vm._e(),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

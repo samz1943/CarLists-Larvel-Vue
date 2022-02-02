@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CarResource;
 use App\Models\Car;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,21 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $query = Car::all();
+        $mode = $request->mode;
+        $geolocation = $request->geolocation;
+        $limit = $request->limit;
 
-        return response()->json(['cars' => $query], 200);
+        $query = Car::select('*');
+
+        if (trim($mode) != '')
+            $query->where('mode', $mode);
+
+        if (trim($geolocation) != '')
+            $query->where('geolocation', $geolocation);
+
+        return CarResource::collection($query->paginate($limit));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $query = User::all();
+        $limit = $request->limit;
 
-        return response()->json(['users' => $query], 200);
+        $query = User::select('*');
+
+        if ($request->product_manager) {
+            $query->where('product_manager', $request->product_manager);
+        }
+
+        // return response()->json(['users' => $query], 200);
+
+        return UserResource::collection($query->paginate($limit));
     }
 
     /**

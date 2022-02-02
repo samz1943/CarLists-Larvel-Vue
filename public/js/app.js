@@ -5344,6 +5344,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5432,6 +5434,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api/route */ "./resources/js/api/route.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5447,9 +5458,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      data: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var id, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              id = parseInt(_this.$route.params.id);
+              _context.next = 4;
+              return _api_route__WEBPACK_IMPORTED_MODULE_1__.getCarAvailability(id);
+
+            case 4:
+              response = _context.sent;
+              _this.data = response.data.data;
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              console.log(_context.t0);
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
   }
 });
 
@@ -5677,7 +5725,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -5975,10 +6022,8 @@ function getCars(data) {
     params: data
   });
 }
-function getCarAvailability(data) {
-  return _https__WEBPACK_IMPORTED_MODULE_0__["default"].get('/car/availability', {
-    params: data
-  });
+function getCarAvailability(id) {
+  return _https__WEBPACK_IMPORTED_MODULE_0__["default"].get('/car/' + id + '/availability');
 }
 
 /***/ }),
@@ -6119,8 +6164,8 @@ var routes = [{
     name: 'car',
     component: _components_Car__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: 'car/availability',
-    name: 'car_availability',
+    path: 'car/:id/availability',
+    name: 'carAvailability',
     component: _components_CarAvailability__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 }];
@@ -30160,44 +30205,55 @@ var render = function () {
             "div",
             { key: index, staticClass: "col-sm-12 col-md-6 col-xl-3 mb-5" },
             [
-              _c("div", { staticClass: "card" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: { src: "/images/car1.png" },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(
-                      _vm._s(car.brand) +
-                        " " +
-                        _vm._s(car.build) +
-                        " " +
-                        _vm._s(car.year)
-                    ),
+              _c(
+                "div",
+                { staticClass: "card" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/car/" + car.id + "/availability" } },
+                    [
+                      _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: { src: "/images/car1.png" },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(
+                        _vm._s(car.brand) +
+                          " " +
+                          _vm._s(car.build) +
+                          " " +
+                          _vm._s(car.year)
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "card-text" }, [
+                      _vm._v("MYR " + _vm._s(car.price) + " per day"),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "card-text" }, [
+                      _vm._v("Mode: " + _vm._s(car.mode)),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "card-text" }, [
+                      _vm._v("Location: " + _vm._s(car.geolocation)),
+                    ]),
                   ]),
                   _vm._v(" "),
-                  _c("span", { staticClass: "card-text" }, [
-                    _vm._v("MYR " + _vm._s(car.price) + " per day"),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("p", { staticClass: "card-text text-end" }, [
+                      _vm._v(_vm._s(car.owner.name)),
+                    ]),
                   ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "card-text" }, [
-                    _vm._v("Mode: " + _vm._s(car.mode)),
-                  ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "card-text" }, [
-                    _vm._v("Location: " + _vm._s(car.geolocation)),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("p", { staticClass: "card-text text-end" }, [
-                    _vm._v(_vm._s(car.owner.name)),
-                  ]),
-                ]),
-              ]),
+                ],
+                1
+              ),
             ]
           )
         }),
@@ -30296,30 +30352,40 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Car Availability Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n          I'm an example component.\n        "),
-            ]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: "/images/car1.png" },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v(
+              _vm._s(_vm.data.car.brand) +
+                " " +
+                _vm._s(_vm.data.car.build) +
+                " " +
+                _vm._s(_vm.data.car.year)
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "\n          " +
+                _vm._s(_vm.data.start_at) +
+                " -> " +
+                _vm._s(_vm.data.end_at) +
+                "\n        "
+            ),
           ]),
         ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -30645,19 +30711,6 @@ var render = function () {
                               },
                             },
                             [_vm._v("Car")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "dropdown-item",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.$router.push("/car/availability")
-                                },
-                              },
-                            },
-                            [_vm._v("Car Availability")]
                           ),
                         ]
                       ),

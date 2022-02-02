@@ -36,8 +36,8 @@ const routes = [
         component: Car,
       },
       {
-        path: 'car/availability',
-        name: 'car_availability',
+        path: 'car/:id/availability',
+        name: 'carAvailability',
         component: CarAvailability,
       },
     ]

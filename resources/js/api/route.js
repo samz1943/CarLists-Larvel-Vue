@@ -12,6 +12,6 @@ export function getCars(data) {
     return http.get('/car', { params: data })
 }
 
-export function getCarAvailability(data) {
-    return http.get('/car/availability', { params: data })
+export function getCarAvailability(id) {
+    return http.get('/car/' + id + '/availability')
 }

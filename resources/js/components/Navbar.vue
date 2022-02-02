@@ -23,7 +23,6 @@
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" @click="$router.push(`/user`)">User</a>
                   <a class="dropdown-item" @click="$router.push(`/car`)">Car</a>
-                  <a class="dropdown-item" @click="$router.push(`/car/availability`)">Car Availability</a>
               </div>
             </li>
           </ul>

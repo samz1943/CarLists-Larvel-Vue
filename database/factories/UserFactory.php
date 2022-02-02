@@ -14,9 +14,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $verified = $this->faker->randomElement([true, false]);
+        $product_manager = false;
+        if ($verified) {
+            $product_manager = $this->faker->randomElement([true, false]);
+        }
+
         return [
             'name' => $this->faker->name,
-            'verified' => $this->faker->randomElement([true, false]),
+            'verified' => $verified,
+            'product_manager' => $product_manager,
         ];
     }
 }

@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [HomeController::class, 'login']);
 
-Route::get('admin', [HomeController::class, 'index']);
-Route::get('user', [UserController::class, 'index']);
-Route::get('car', [CarController::class, 'index']);
-Route::get('car/availability', [CarAvailabilityController::class, 'index']);
+Route::middleware('auth:api')->group(function() {
+    Route::get('admin', [HomeController::class, 'index']);
+    Route::get('user', [UserController::class, 'index']);
+    Route::get('car', [CarController::class, 'index']);
+    Route::get('car/availability', [CarAvailabilityController::class, 'index']);
+});

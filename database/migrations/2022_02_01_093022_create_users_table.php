@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->boolean('verified')->default(false);
+            $table->boolean('product_manager')->default(false);
             $table->timestamps();
         });
     }

@@ -34,9 +34,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12341234'),
         ]);
 
-        User::factory(10)->create();
+        User::factory(30)->create();
 
-        Car::factory(20)->create()->each(
+        Car::factory(30)->create()->each(
             function($car) {
               CarAvailability::factory()->create(['car_id' => $car->id]);
             }

@@ -15,18 +15,15 @@
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ms-auto">
             <!-- Authentication Links -->
-            <li class="nav-item">
-                <a class="nav-link" href="">Login</a>
+            <li v-if="!isLoggedIn" class="nav-item">
+                <a class="nav-link" @click="$router.push(`/`)">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Register</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Name
-              </a>
+            <li v-else class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Admin</a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href=""></a>
+                  <a class="dropdown-item" @click="$router.push(`/user`)">User</a>
+                  <a class="dropdown-item" @click="$router.push(`/car`)">Car</a>
+                  <a class="dropdown-item" @click="$router.push(`/car/availability`)">Car Availability</a>
               </div>
             </li>
           </ul>
@@ -36,3 +33,16 @@
   </div>
 </template>
 
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
+  async created() {
+    if (localStorage.getItem('token')) {
+      this.$store.commit("setLoggedIn", true)
+    }
+  },
+}
+</script>

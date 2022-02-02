@@ -5,6 +5,9 @@ Vue.use(Router)
 
 import Layout from '../components/Layout'
 import Login from '../components/Login'
+import User from '../components/User'
+import Car from '../components/Car'
+import CarAvailability from '../components/CarAvailability'
 import Example from '../components/ExampleComponent'
 
 const routes = [
@@ -18,14 +21,30 @@ const routes = [
         component: Login,
       },
       {
-        path: '/home',
+        path: 'home',
         name: 'home',
         component: Example,
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: User,
+      },
+      {
+        path: 'car',
+        name: 'car',
+        component: Car,
+      },
+      {
+        path: 'car/availability',
+        name: 'car_availability',
+        component: CarAvailability,
       },
     ]
   },
 ]
 
 export default new Router ({
-  routes
+    mode: 'history',
+    routes
 })

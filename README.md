@@ -4,7 +4,7 @@
 -   `composer install `
 -   `cp .env.example .env `
 -   Create database and modify .env with your DB name and Pusher credentials.
--   `php artisan migrate `
+-   `php artisan migrate:fresh --seed `
 -   `php artisan key:generate `
 -   `npm install && npm run dev `
 -   `php artisan storage:link`

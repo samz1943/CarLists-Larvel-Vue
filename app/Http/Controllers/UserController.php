@@ -20,7 +20,7 @@ class UserController extends Controller
 
         $query = User::select('*');
 
-        if ($request->product_manager)
+        if (isset($request->product_manager))
             $query->where('product_manager', $request->product_manager);
 
         return UserResource::collection($query->paginate($limit));

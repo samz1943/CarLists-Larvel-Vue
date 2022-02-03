@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
         Admin::truncate();
@@ -37,7 +35,7 @@ class DatabaseSeeder extends Seeder
         User::factory(30)->create()->each(
             function($user) {
                 if ($user->verified && $user->product_manager) {
-                    Car::factory(rand(1,3))->create()->each(
+                    Car::factory(rand(1,3))->create(['user_id' => $user->id])->each(
                         function($car) {
                           CarAvailability::factory()->create(['car_id' => $car->id]);
                         }

@@ -9,7 +9,7 @@ import User from '../components/User'
 import UserProfile from '../components/UserProfile'
 import Car from '../components/Car'
 import CarAvailability from '../components/CarAvailability'
-import Example from '../components/ExampleComponent'
+import Home from '../components/Home'
 
 const routes = [
   {
@@ -24,7 +24,7 @@ const routes = [
       {
         path: 'home',
         name: 'home',
-        component: Example,
+        component: Home,
       },
       {
         path: 'user',

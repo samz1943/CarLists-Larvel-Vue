@@ -41,7 +41,7 @@
               <span class="card-text">Mode: {{ car.mode }}</span><br>
               <span class="card-text">Location: {{ car.geolocation }}</span>
             </div>
-            <div class="card-body">
+            <div class="card-footer">
                 <img src="/images/user.png" style="width:40px"/>
               <p class="card-text text-end">{{ car.owner.name }}</p>
             </div>

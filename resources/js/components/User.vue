@@ -19,10 +19,11 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-body">
+              <img src="/images/user.png" style="width:40px"/>
               {{ user.name }}
               <span v-if="user.verified" class="badge rounded-pill bg-primary">Verified</span>
               <span v-if="user.product_manager" class="badge bg-success">Product Manager</span>
-              <button type="button" class="btn btn-primary float-end">Info</button>
+              <button type="button" class="btn btn-primary float-end" @click="$router.push('/user/' + user.id)">Info</button>
             </div>
           </div>
         </div>

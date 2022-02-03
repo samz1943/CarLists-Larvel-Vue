@@ -19,7 +19,8 @@ class CarController extends Controller
         $geolocation = $request->geolocation;
         $limit = $request->limit;
 
-        $query = Car::select('*');
+        $query = Car::join('users', 'users.id', '=', 'cars.user_id')
+        ->select('cars.id as id' ,'cars.*', 'users.id as user_id', 'users.name');
 
         if (trim($mode) != '')
             $query->where('mode', $mode);

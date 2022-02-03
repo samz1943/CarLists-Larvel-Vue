@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,7 +55,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $query = User::find($user->id);
+
+        return new UserProfileResource($query);
     }
 
     /**

@@ -15,8 +15,6 @@ class CarResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = User::find($this->user_id);
-
         return [
             'id' => $this->id,
             'brand' => $this->brand,
@@ -25,7 +23,12 @@ class CarResource extends JsonResource
             'mode' => $this->mode,
             'geolocation' => $this->geolocation,
             'price' => $this->price,
-            'owner' => new UserResource($user),
+            $this->mergeWhen($this->name != null, [
+                'owner' => [
+                    'id' => $this->user_id,
+                    'name' => $this->name
+                ]
+            ])
         ];
     }
 }

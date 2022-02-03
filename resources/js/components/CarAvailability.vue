@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <img src="/images/car1.png" class="img-fluid">
+        <img src="/images/car1.png" class="img-fluid" style="display:block;margin-left:auto;margin-right:auto;width:50%;">
         <div class="card">
-          <div class="card-header">{{ data.car.brand }} {{ data.car.build }} {{ data.car.year }}</div>
+          <div class="card-header"><h2>{{ data.car.brand }} {{ data.car.build }} {{ data.car.year }}</h2></div>
           <div class="card-body">
-            {{ data.start_at }} -> {{ data.end_at }}
+            Available: {{ data.start_at }} -> {{ data.end_at }}
           </div>
         </div>
       </div>

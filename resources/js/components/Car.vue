@@ -42,6 +42,7 @@
               <span class="card-text">Location: {{ car.geolocation }}</span>
             </div>
             <div class="card-body">
+                <img src="/images/user.png" style="width:40px"/>
               <p class="card-text text-end">{{ car.owner.name }}</p>
             </div>
           </div>

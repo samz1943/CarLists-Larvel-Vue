@@ -51,10 +51,10 @@ class HomeController extends Controller
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                 return response()->json(['token' => $token], 200);
             } else {
-                return response()->json(["message" => "Password mismatch"], 422);
+                return response()->json(["message" => "Wrong Email or Password"], 422);
             }
         } else {
-            return response()->json(["message" =>'User does not exist'], 422);
+            return response()->json(["message" => 'Wrong Email or Password'], 422);
         }
     
         // if (Auth::attempt([

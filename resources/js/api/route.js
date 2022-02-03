@@ -8,6 +8,10 @@ export function getUsers(data) {
     return http.get('/user', { params: data })
 }
 
+export function getUser(id) {
+    return http.get('/user/' + id)
+}
+
 export function getCars(data) {
     return http.get('/car', { params: data })
 }

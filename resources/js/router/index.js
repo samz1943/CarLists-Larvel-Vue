@@ -6,6 +6,7 @@ Vue.use(Router)
 import Layout from '../components/Layout'
 import Login from '../components/Login'
 import User from '../components/User'
+import UserProfile from '../components/UserProfile'
 import Car from '../components/Car'
 import CarAvailability from '../components/CarAvailability'
 import Example from '../components/ExampleComponent'
@@ -29,6 +30,11 @@ const routes = [
         path: 'user',
         name: 'user',
         component: User,
+      },
+      {
+        path: 'user/:id',
+        name: 'userProfile',
+        component: UserProfile,
       },
       {
         path: 'car',

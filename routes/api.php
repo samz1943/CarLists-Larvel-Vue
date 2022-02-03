@@ -27,6 +27,7 @@ Route::post('login', [HomeController::class, 'login']);
 Route::middleware('auth:api')->group(function() {
     Route::get('admin', [HomeController::class, 'index']);
     Route::get('user', [UserController::class, 'index']);
+    Route::get('user/{user}', [UserController::class, 'show']);
     Route::get('car', [CarController::class, 'index']);
     Route::get('car/{car}/availability', [CarAvailabilityController::class, 'index']);
 });

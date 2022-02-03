@@ -6,6 +6,9 @@
         <div class="card">
           <div class="card-header"><h2>{{ data.car.brand }} {{ data.car.build }} {{ data.car.year }}</h2></div>
           <div class="card-body">
+            <span class="card-text">MYR {{ data.car.price }} per day</span><br>
+            <span class="card-text">Mode: {{ data.car.mode }}</span><br>
+            <span class="card-text">Location: {{ data.car.geolocation }}</span><br>
             Available: {{ data.start_at }} -> {{ data.end_at }}
           </div>
         </div>

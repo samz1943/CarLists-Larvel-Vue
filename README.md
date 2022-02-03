@@ -9,3 +9,30 @@
 -   `npm install && npm run dev `
 -   `php artisan storage:link`
 -   `php artisan serve `
+
+#### Login
+```http
+POST /api/login
+
+{"email": "admin@test.com", "password": "12341234"}
+```
+
+#### Get Users
+```http
+GET /api/user
+```
+
+#### Get Specific User
+```http
+GET /api/user/{id}
+```
+
+#### Get Cars
+```http
+GET /api/car
+```
+
+#### Get Car Availability
+```http
+GET /api/car/{id}/availability
+```

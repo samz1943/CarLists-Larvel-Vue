@@ -5460,6 +5460,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -30583,6 +30586,20 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
+            _c("span", { staticClass: "card-text" }, [
+              _vm._v("MYR " + _vm._s(_vm.data.car.price) + " per day"),
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("span", { staticClass: "card-text" }, [
+              _vm._v("Mode: " + _vm._s(_vm.data.car.mode)),
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("span", { staticClass: "card-text" }, [
+              _vm._v("Location: " + _vm._s(_vm.data.car.geolocation)),
+            ]),
+            _c("br"),
             _vm._v(
               "\n          Available: " +
                 _vm._s(_vm.data.start_at) +
